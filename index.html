@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read App Reviews Like a Product Intelligence Designer — Free Prompts Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #ede6da;
+  --paper-dark: #e2dace;
+  --ink: #1e1a16;
+  --red: #842323;
+  --mid: #6b5f52;
+  --light: #b0a494;
+  --dark-bg: #1c1712;
+}
+
+body {
+  background: #111;
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 20px 40px;
+}
+
+.doc {
+  width: 760px;
+  margin: 0 auto;
+}
+
+/* ── GRAIN ── */
+.grain { position: relative; overflow: hidden; }
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='760' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.grain-dark::after { mix-blend-mode: screen; opacity: 0.05; }
+.grain > * { position: relative; z-index: 2; }
+
+/* ── SECTIONS ── */
+.section { padding: 52px 60px; }
+.light { background: var(--paper); }
+.dark { background: var(--dark-bg); }
+.divider { height: 2px; background: var(--ink); }
+
+/* ── HERO ── */
+.hero { border-top: 6px solid var(--red); }
+.hero .top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 44px;
+}
+.kicker {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 3.5px; color: var(--red);
+  text-transform: uppercase;
+}
+.handle { font-size: 10px; font-weight: 300; letter-spacing: 1px; color: var(--light); }
+
+.hero h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 80px; line-height: 0.93;
+  letter-spacing: -3px; color: var(--ink);
+  margin-bottom: 32px;
+}
+.hero h1 .red { color: var(--red); }
+
+.hero .subhead {
+  font-size: 15px; font-weight: 300; color: var(--mid);
+  line-height: 1.75; max-width: 500px;
+  border-left: 2px solid var(--light); padding-left: 18px;
+  margin-bottom: 44px;
+}
+.hero .bottom-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid #cec6b6; padding-top: 16px;
+}
+.free-tag {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px; color: var(--red); letter-spacing: -0.5px;
+}
+.handnote {
+  font-family: 'Caveat', cursive;
+  font-size: 21px; color: var(--light); font-style: italic;
+}
+
+/* ── HOW TO COLLECT ── */
+.collect-intro {
+  font-size: 15px; font-weight: 300; color: rgba(245,237,224,0.8);
+  line-height: 1.8; margin-bottom: 36px;
+}
+.collect-intro strong { color: #f5ede0; font-weight: 500; }
+
+.section-label {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; color: var(--red);
+  text-transform: uppercase; display: block; margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 44px; letter-spacing: -2px; line-height: 1;
+  color: #f5ede0; margin-bottom: 8px;
+}
+.section-title.dark-title { color: var(--ink); }
+.section-subtitle {
+  font-size: 13px; font-weight: 300; color: var(--light);
+  letter-spacing: 0.5px; margin-bottom: 40px;
+}
+.section-subtitle.ink { color: var(--mid); }
+
+.steps-collect {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.step-row {
+  display: grid; grid-template-columns: 64px 1fr;
+  background: rgba(255,255,255,0.04);
+}
+.step-row.light-row { background: var(--paper-dark); }
+.step-n {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px; color: var(--red); letter-spacing: -1px;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.07); padding: 16px;
+}
+.step-n.ink-n {
+  border-right: 1px solid #d4ccc0;
+}
+.step-content { padding: 18px 22px; }
+.step-head {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 17px; letter-spacing: -0.3px;
+  color: #f5ede0; margin-bottom: 6px;
+}
+.step-head.ink { color: var(--ink); }
+.step-body {
+  font-size: 13px; font-weight: 300; color: var(--light);
+  line-height: 1.65;
+}
+.step-body.ink { color: var(--mid); }
+.step-note {
+  font-family: 'Caveat', cursive;
+  font-size: 15px; color: rgba(255,255,255,0.3);
+  margin-top: 5px; font-style: italic;
+}
+.step-note.ink { color: var(--light); }
+
+/* ── PROMPTS ── */
+.prompt-block {
+  margin-bottom: 36px;
+}
+.prompt-label {
+  font-size: 9px; font-weight: 500; letter-spacing: 3px;
+  color: var(--red); text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.prompt-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 20px; color: var(--ink);
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.prompt-desc {
+  font-size: 13px; font-weight: 300; color: var(--mid);
+  line-height: 1.65; margin-bottom: 14px;
+}
+
+.code-box {
+  background: #1c1712;
+  border-left: 3px solid var(--red);
+  padding: 20px 22px;
+  position: relative;
+}
+.code-box pre {
+  font-family: 'Courier New', monospace;
+  font-size: 12.5px; color: #d4c8b8;
+  line-height: 1.75; white-space: pre-wrap;
+  word-break: break-word;
+}
+.code-box .copy-btn {
+  position: absolute; top: 12px; right: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--light);
+  background: none; border: 1px solid rgba(176,164,148,0.3);
+  padding: 4px 10px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.code-box .copy-btn:hover { color: #f5ede0; border-color: var(--light); }
+.code-box .copy-btn.copied { color: #7ebd8e; border-color: #7ebd8e; }
+
+.prompt-divider {
+  height: 1px; background: #d4ccc0; margin: 32px 0;
+}
+
+/* ── WHAT NEXT callout ── */
+.next-callout {
+  background: var(--dark-bg);
+  border-top: 3px solid var(--red);
+  padding: 32px 36px;
+  margin-top: 2px;
+}
+.next-callout .nc-label {
+  font-size: 9px; font-weight: 500; letter-spacing: 3px;
+  color: var(--red); text-transform: uppercase;
+  display: block; margin-bottom: 14px;
+}
+.next-callout .nc-headline {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 34px; color: #f5ede0;
+  letter-spacing: -1.5px; line-height: 1; margin-bottom: 16px;
+}
+.next-callout .nc-body {
+  font-size: 14px; font-weight: 300;
+  color: rgba(245,237,224,0.75); line-height: 1.75;
+  max-width: 520px; margin-bottom: 22px;
+  border-left: 2px solid var(--red); padding-left: 16px;
+}
+.next-callout .nc-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;
+}
+.nc-price {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 24px; color: #f5ede0; letter-spacing: -1px;
+}
+.nc-hand {
+  font-family: 'Caveat', cursive;
+  font-size: 20px; color: var(--light); font-style: italic;
+}
+.nc-handle {
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 1.5px; color: rgba(255,255,255,0.35);
+}
+
+/* ── WHAT'S INCLUDED LIST ── */
+.included-list {
+  display: flex; flex-direction: column; gap: 2px;
+  margin-top: 28px;
+}
+.included-item {
+  display: flex; gap: 0;
+  background: var(--paper-dark);
+}
+.inc-marker {
+  width: 48px; flex-shrink: 0;
+  display: flex; align-items: flex-start;
+  justify-content: center;
+  padding: 14px 0 0;
+  font-size: 16px; color: var(--red);
+  border-right: 1px solid #d4ccc0;
+}
+.inc-body { padding: 12px 18px; }
+.inc-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 14px; color: var(--ink);
+  letter-spacing: -0.3px; margin-bottom: 3px;
+}
+.inc-desc {
+  font-size: 12px; font-weight: 300;
+  color: var(--light); line-height: 1.6;
+}
+
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- HERO -->
+  <section class="section light hero grain">
+    <div class="top-meta">
+      <span class="kicker">free prompts guide</span>
+      <span class="handle">@kateintheloops</span>
+    </div>
+    <h1>Read reviews<br>like a <span class="red">product</span><br>designer.</h1>
+    <p class="subhead">The exact Claude prompts I use to analyze competitor app reviews — no Python, no setup, no data background needed. Just your browser and a few reviews.</p>
+    <div class="bottom-bar">
+      <span class="free-tag">free</span>
+      <span class="handnote">takes about an hour</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW TO COLLECT REVIEWS (NO PYTHON) -->
+  <section class="section dark grain-dark">
+    <span class="section-label">step one</span>
+    <h2 class="section-title">Get the reviews</h2>
+    <p class="section-subtitle">manually — no code required</p>
+
+    <p class="collect-intro">You need raw material before Claude can do anything. Here's how to collect 50–100 reviews per competitor <strong>without writing a single line of code.</strong></p>
+
+    <div class="steps-collect">
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div class="step-content">
+          <div class="step-head">Find your competitors on Google Play</div>
+          <div class="step-body">Search for 3–5 apps in your space. You want apps solving the same problem your product solves — or the closest thing to it.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div class="step-content">
+          <div class="step-head">Filter by rating</div>
+          <div class="step-body">On each app's Play Store page, filter reviews to show 1-star and 2-star first. These surface the real pain points. Then switch to 3-star — those often hide feature requests in the middle of complaints.</div>
+          <div class="step-note">4 and 5 stars are useful too, but start with the problems.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div class="step-content">
+          <div class="step-head">Copy into a doc</div>
+          <div class="step-body">Open a Google Doc or Notes app. For each app, paste 20–30 reviews. Include the star rating next to each one. Label which app each group came from.</div>
+          <div class="step-note">Format doesn't need to be perfect. Just readable.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div class="step-content">
+          <div class="step-head">Paste into Claude</div>
+          <div class="step-body">Open claude.ai. Start a new conversation. Paste all your reviews in one message with the priming prompt below — and you're ready to analyze.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- THE PROMPTS -->
+  <section class="section light grain">
+    <span class="section-label">step two</span>
+    <h2 class="section-title dark-title">The prompts</h2>
+    <p class="section-subtitle ink">use these in order — each one builds on the last</p>
+
+    <!-- PROMPT 1 -->
+    <div class="prompt-block">
+      <span class="prompt-label">prompt 01 — priming</span>
+      <div class="prompt-title">Tell Claude what it's looking at</div>
+      <p class="prompt-desc">Send this first with your reviews pasted below it. This sets the context so every follow-up prompt works properly.</p>
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        <pre>Below are real app store reviews I collected from [X] competitor apps in the [your market] space. Each group is labeled with the app name and star rating.
+
+Read through all of them and confirm when you're ready. I'll be asking you several questions to help me understand this competitive landscape.</pre>
+      </div>
+    </div>
+
+    <div class="prompt-divider"></div>
+
+    <!-- PROMPT 2 -->
+    <div class="prompt-block">
+      <span class="prompt-label">prompt 02 — pain points</span>
+      <div class="prompt-title">Find what keeps showing up</div>
+      <p class="prompt-desc">This is the core analysis. You're looking for patterns, not individual complaints.</p>
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        <pre>For each app, identify the top 3–5 complaint categories. Group similar complaints together under one theme — don't just list individual reviews.
+
+For each category:
+- Give it a short label (e.g. "sync issues", "missing features", "confusing UI")
+- Estimate roughly how many reviews mention it
+- Quote 1–2 real review lines that represent this complaint well
+
+Format it as a simple list per app.</pre>
+      </div>
+    </div>
+
+    <div class="prompt-divider"></div>
+
+    <!-- PROMPT 3 -->
+    <div class="prompt-block">
+      <span class="prompt-label">prompt 03 — feature gaps</span>
+      <div class="prompt-title">Find what users keep asking for</div>
+      <p class="prompt-desc">Pain points tell you what's broken. Feature requests tell you what nobody has built yet.</p>
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        <pre>Now look across all the apps together. What features or improvements do users keep requesting that none of these apps seem to have built well?
+
+List the top 5 feature gaps. For each one:
+- What users are asking for (in their own words)
+- Which apps get this complaint most often
+- Whether any app partially addresses it already</pre>
+      </div>
+    </div>
+
+    <div class="prompt-divider"></div>
+
+    <!-- PROMPT 4 -->
+    <div class="prompt-block">
+      <span class="prompt-label">prompt 04 — comparison</span>
+      <div class="prompt-title">See who's winning on what</div>
+      <p class="prompt-desc">This is where the real intelligence starts — understanding the competitive dynamic, not just individual apps.</p>
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        <pre>Based on the reviews, give me a brief competitive comparison:
+
+- Which app has the most loyal users (and why, based on review sentiment)?
+- Which app seems to be losing users most actively?
+- What's one thing each app does that users genuinely appreciate?
+- If you had to describe the "white space" in this market — the thing users want that nobody offers well — what would it be?
+
+Keep it concise. One short paragraph per question is enough.</pre>
+      </div>
+    </div>
+
+    <div class="prompt-divider"></div>
+
+    <!-- PROMPT 5 -->
+    <div class="prompt-block">
+      <span class="prompt-label">prompt 05 — the brief</span>
+      <div class="prompt-title">Turn it into something you can act on</div>
+      <p class="prompt-desc">This is the output that matters. Ask Claude to synthesize everything into a strategic brief you can actually use.</p>
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        <pre>Now write me a short competitive intelligence brief based on everything we've discussed. Structure it as three sections:
+
+BUILD PRIORITY — the one problem I should focus on if I'm building in this space, based on what users keep asking for
+
+COMPETITIVE THREAT — which competitor is doing something right that others aren't, and why it matters
+
+WATCH CLOSELY — a trend or pattern in the reviews that might signal where this market is heading
+
+Keep it direct. Write it like you're briefing a product team, not writing a report.</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TIPS -->
+  <section class="section dark grain-dark">
+    <span class="section-label">tips</span>
+    <h2 class="section-title">Get better results</h2>
+    <p class="section-subtitle">small adjustments that make a big difference</p>
+
+    <div class="steps-collect" style="margin-top: 28px;">
+      <div class="step-row">
+        <div class="step-n">→</div>
+        <div class="step-content">
+          <div class="step-head">More reviews = better patterns</div>
+          <div class="step-body">20 reviews gives you impressions. 50–80 reviews per app gives you actual patterns. The more you paste in, the more confident Claude's analysis becomes.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">→</div>
+        <div class="step-content">
+          <div class="step-head">Add context if it helps</div>
+          <div class="step-body">If your market has specific nuances — regulatory stuff, a specific user type, a particular use case — mention it. "These are all menstrual tracking apps used primarily by women 18–35" changes the quality of the analysis.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">→</div>
+        <div class="step-content">
+          <div class="step-head">Push back if the output feels generic</div>
+          <div class="step-body">If Claude's response could apply to any app in any market, it's too generic. Just say: "Be more specific — reference actual review text and give me something I couldn't have guessed without the data."</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">→</div>
+        <div class="step-content">
+          <div class="step-head">Save your briefs</div>
+          <div class="step-body">Copy the final brief into a doc. Do this every month and you'll start to see how sentiment shifts over time. That's when it becomes a real intelligence system.</div>
+          <div class="step-note">a pattern over months is more valuable than a snapshot.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA TO $9 -->
+  <section class="section light grain">
+    <span class="section-label">want to go further?</span>
+    <h2 class="section-title dark-title">The $9 guide</h2>
+    <p class="section-subtitle ink">for when you're ready to build a real system</p>
+
+    <p style="font-size:14px; font-weight:300; color:var(--mid); line-height:1.75; max-width:560px; border-left:2px solid var(--light); padding-left:16px; margin-bottom:36px;">
+      This free guide gets you real insights from a handful of manually collected reviews. The $9 guide takes that same methodology and scales it — scraping 500 reviews per competitor automatically, then building a live dashboard that updates every time you run it.
+    </p>
+
+    <div class="included-list">
+      <div class="included-item">
+        <div class="inc-marker">↳</div>
+        <div class="inc-body">
+          <div class="inc-title">Python scraping script</div>
+          <div class="inc-desc">Pulls 500 reviews per app from Google Play automatically. Run it in Google Colab — no local setup needed.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="inc-marker">↳</div>
+        <div class="inc-body">
+          <div class="inc-title">Full prompt pack for large datasets</div>
+          <div class="inc-desc">Upgraded prompts designed for CSV-scale data — not 50 reviews, but 2,500. The patterns are much clearer at volume.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="inc-marker">↳</div>
+        <div class="inc-body">
+          <div class="inc-title">Live intelligence dashboard</div>
+          <div class="inc-desc">Step-by-step walkthrough for building a Notion dashboard that surfaces your analysis in a format you can bring to meetings.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="inc-marker">↳</div>
+        <div class="inc-body">
+          <div class="inc-title">Beginner Python setup guide</div>
+          <div class="inc-desc">Never run a Python script before? The guide walks through every step — install, run, troubleshoot — for both Mac and Windows.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BLOCK -->
+  <div class="next-callout grain-dark" style="position:relative; overflow:hidden;">
+    <span class="nc-label">get the full system</span>
+    <div class="nc-headline">2 weeks of work.<br><em style="font-style:italic">One afternoon</em><br>for you.</div>
+    <p class="nc-body">Step by step, even if you've never touched Python before. The scraping script, the prompts, and the dashboard — everything packaged so you can build it once and run it every month.</p>
+    <div class="nc-bottom">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="nc-price">$9 · link in bio</span>
+        <span class="nc-hand">beacons.ai/kateintheloops</span>
+      </div>
+      <span class="nc-handle">@kateintheloops</span>
+    </div>
+  </div>
+
+</div><!-- /doc -->
+
+<script>
+function copyPrompt(btn) {
+  const pre = btn.nextElementSibling;
+  navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
