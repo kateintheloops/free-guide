@@ -266,6 +266,32 @@ body {
   color: var(--light); line-height: 1.6;
 }
 
+.floating-download {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  background: var(--red);
+  color: #fff;
+  padding: 14px 20px;
+  text-decoration: none;
+  border-radius: 999px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-download:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+}
+  
 </style>
 </head>
 <body>
@@ -532,6 +558,25 @@ Keep it direct. Write it like you're briefing a product team, not writing a repo
 
 </div><!-- /doc -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+function downloadPDF() {
+  const element = document.querySelector('.doc');
+
+  html2pdf()
+    .set({
+      margin: 0,
+      filename: 'reviews-guide.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'px', format: 'a4', orientation: 'portrait' }
+    })
+    .from(element)
+    .save();
+}
+</script>
+  
 <script>
 function copyPrompt(btn) {
   const pre = btn.nextElementSibling;
@@ -546,5 +591,9 @@ function copyPrompt(btn) {
 }
 </script>
 
+<a href="#" onclick="downloadPDF()" class="floating-download">
+  ↓ Download PDF
+</a>
+  
 </body>
 </html>
